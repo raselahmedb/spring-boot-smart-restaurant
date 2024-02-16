@@ -1,0 +1,41 @@
+package com.smart.restaurant.service;
+import org.springframework.stereotype.Service;
+
+import com.smart.restaurant.model.OrderLine;
+import com.smart.restaurant.repository.OrderLineRepository;
+
+import lombok.RequiredArgsConstructor;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * @author Rasel Ahmed
+ */
+@Service
+@RequiredArgsConstructor
+public class OrderLineService {
+
+    private final OrderLineRepository orderLineRepository;
+
+    public List<OrderLine> getAllOrderLines() {
+        return orderLineRepository.findAll();
+    }
+
+    public Optional<OrderLine> getOrderLineById(Long id) {
+        return orderLineRepository.findById(id);
+    }
+
+    public OrderLine saveOrderLine(OrderLine orderLine) {
+    	BigDecimal totalPrice = orderLine.getQuantity().multiply(orderLine.getPrice()).setScale(2);
+    	orderLine.setAmount(totalPrice);
+        orderLine = orderLineRepository.save(orderLine);
+        orderLineRepository.updateOrderQtyAmt(orderLine.getOrder().getId());
+        return orderLine;
+    }
+
+    public void deleteOrderLine(Long id) {
+        orderLineRepository.deleteById(id);
+    }
+}
