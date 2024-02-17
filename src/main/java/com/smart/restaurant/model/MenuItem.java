@@ -39,4 +39,15 @@ public class MenuItem extends BaseEntity implements Serializable{
 	private String description;
 	
 	private BigDecimal price;
+
+	public MenuItem(Long id, String name, String code, String description, BigDecimal price) {
+		super();
+		setId(id);
+		this.name = name;
+		this.code = code;
+		this.description = description;
+		this.price = price;
+	}
+	
+	
 }
