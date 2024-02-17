@@ -28,7 +28,7 @@ public class OrderService {
 //    }
     
     public List<Order> fetchOrdersForCurrentDay(LocalDate currentDate) {
-        return orderRepository.findByOrderDate(currentDate.minusDays(1));
+        return orderRepository.findByOrderDate(currentDate);
     }
 
     public BigDecimal fetchTotalSaleAmountForCurrentDay(LocalDate currentDate) {
