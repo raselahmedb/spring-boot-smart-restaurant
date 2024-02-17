@@ -1,6 +1,7 @@
 package com.smart.restaurant.config;
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +22,12 @@ import com.smart.restaurant.repository.MenuItemRepository;
 import com.smart.restaurant.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author Rasel Ahmed
+ */
+@Slf4j
 @Component
 @Configuration
 @RequiredArgsConstructor
@@ -34,40 +40,51 @@ public class DataInitializer implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 
-		menuItemRepository.saveAll(initMenuItem());
-		customerRepository.saveAll(initCustomer());
-		
 		long beforeTime = System.currentTimeMillis();
-		initOrder().forEach(orderService::saveOrder);
+		menuItemRepository.saveAll(initMenuItem());
 		long afterTime = System.currentTimeMillis();
-		System.out.println("order initial: " + (afterTime - beforeTime) + "ms");
+		log.info("Menu Itme initial: " + (afterTime - beforeTime) + "ms");
+
+		beforeTime = System.currentTimeMillis();
+		customerRepository.saveAll(initCustomer());
+		afterTime = System.currentTimeMillis();
+		log.info("Customer initial: " + (afterTime - beforeTime) + "ms");
+		
+		beforeTime = System.currentTimeMillis();
+		initOrder().forEach(orderService::saveOrder);
+		afterTime = System.currentTimeMillis();
+		log.info("Order initial: " + (afterTime - beforeTime) + "ms");
+
 	}
 
-	
 	List<Order> initOrder() {
 		List<Order> orders = new ArrayList<>();
-		Random random = new Random();
+//		Random random = new Random();
+		SecureRandom random = new SecureRandom();
 
 		LocalDate orderDate = LocalDate.now().minusDays(10);
 		long menuItemId = 1L;
 
 		for (int i = 0; i < 10; i++) {
-			int randomOderCount = random.nextInt(1, 50);
+
+			orderDate = orderDate.plusDays(1);
+			int randomOderCount = random.nextInt(50) + 1;
+
 			for (int j = 0; j < randomOderCount; j++) {
-				int orderLineCounr = random.nextInt(1, 11);
-				long customerId = random.nextLong(1, 11);
+				int orderLineCounr = random.nextInt(10) + 1;
+				long customerId = random.nextLong(10) + 1;
 				List<OrderLine> orderLines = new ArrayList<>();
-				long qty = random.nextLong(1, 11);
+				long qty = random.nextLong(10) + 1;
+
 				for (int k = 0; k < orderLineCounr; k++) {
-					menuItemId = random.nextLong(1, 35);
+					menuItemId = random.nextLong(34) + 1;
 					orderLines.add(new OrderLine(new MenuItem(menuItemId, null, null, null, null), null,
 							BigDecimal.valueOf(qty), null, null));
 				}
+
 				orders.add(new Order(new Customer(customerId, null, null, null, null, null), orderLines, null, null,
 						orderDate));
 			}
-
-			orderDate = orderDate.plusDays(1);
 		}
 
 		// Generate a random number between 1 and 10 (inclusive)
