@@ -493,30 +493,30 @@ INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) 
 
 
 
-INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 1, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 19, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 20, (SELECT MAX(id) FROM orders));
+INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 1, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 19, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 20, (SELECT MAX(id) FROM public.orders));
 
-INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 1, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 19, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 20, (SELECT MAX(id) FROM orders));
+INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 1, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 19, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 20, (SELECT MAX(id) FROM public.orders));
 
-INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 1, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 19, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 20, (SELECT MAX(id) FROM orders));
+INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 1, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 19, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 20, (SELECT MAX(id) FROM public.orders));
 
-INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 1, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 19, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 20, (SELECT MAX(id) FROM orders));
+INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 1, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 19, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 20, (SELECT MAX(id) FROM public.orders));
 
-INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 1, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 19, (SELECT MAX(id) FROM orders));
-INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM order_lines), 20, (SELECT MAX(id) FROM orders));
+INSERT INTO public.orders (order_date, total_amount, total_quantity, customer_id, id) VALUES (CURRENT_DATE, 550.00, 3.00, 8, (SELECT COALESCE(MAX(id),0) + 1 FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (425.00, 425.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 1, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (70.00, 70.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 19, (SELECT MAX(id) FROM public.orders));
+INSERT INTO public.order_lines (amount, price, quantity, id, item_id, order_id) VALUES (55.00, 55.00, 1.00, (SELECT COALESCE(MAX(id),0) + 1 FROM public.order_lines), 20, (SELECT MAX(id) FROM public.orders));
 
 
 --
