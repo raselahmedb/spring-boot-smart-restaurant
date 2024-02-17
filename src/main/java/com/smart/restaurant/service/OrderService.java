@@ -1,4 +1,5 @@
 package com.smart.restaurant.service;
+
 import org.springframework.stereotype.Service;
 
 import com.smart.restaurant.model.Order;
@@ -48,7 +49,9 @@ public class OrderService {
     }
 
     public Order saveOrder(Order order) {
-    	order.setOrderDate(LocalDate.now());
+    	if (order.getOrderDate() == null) {
+    		order.setOrderDate(LocalDate.now());
+    	}
     	
     	Order order2 = orderRepository.save(order);
     	
