@@ -39,4 +39,16 @@ public class Customer extends BaseEntity implements Serializable {
 	private String email;
 	
 	private String address;
+
+	public Customer(Long id, String name, String code, String phone, String email, String address) {
+		super();
+		setId(id);
+		this.name = name;
+		this.code = code;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+	}
+	
+	
 }
