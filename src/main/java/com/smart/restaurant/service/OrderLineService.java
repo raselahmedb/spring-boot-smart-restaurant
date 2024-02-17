@@ -1,6 +1,7 @@
 package com.smart.restaurant.service;
 import org.springframework.stereotype.Service;
 
+import com.smart.restaurant.model.MenuItem;
 import com.smart.restaurant.model.OrderLine;
 import com.smart.restaurant.repository.OrderLineRepository;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class OrderLineService {
 
     private final OrderLineRepository orderLineRepository;
+    private final MenuItemService menuItemService;
 
     public List<OrderLine> getAllOrderLines() {
         return orderLineRepository.findAll();
@@ -28,6 +30,8 @@ public class OrderLineService {
     }
 
     public OrderLine saveOrderLine(OrderLine orderLine) {
+    	MenuItem item = menuItemService.getMenuItemById(orderLine.getItem().getId()).get();
+    	orderLine.setPrice(item.getPrice());
     	BigDecimal totalPrice = orderLine.getQuantity().multiply(orderLine.getPrice()).setScale(2);
     	orderLine.setAmount(totalPrice);
         orderLine = orderLineRepository.save(orderLine);
