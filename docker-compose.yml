@@ -31,7 +31,7 @@ services:
         "spring.datasource.username" : "$POSTGRESDB_USER",
         "spring.datasource.password" : "$POSTGRESDB_ROOT_PASSWORD",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
-        "spring.jpa.hibernate.ddl-auto" : "create"
+        "spring.jpa.hibernate.ddl-auto" : "update"
       }'
     volumes:
       - .m2:/root/.m2
