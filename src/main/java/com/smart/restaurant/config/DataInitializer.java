@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -40,20 +39,22 @@ public class DataInitializer implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 
-		long beforeTime = System.currentTimeMillis();
-		menuItemRepository.saveAll(initMenuItem());
-		long afterTime = System.currentTimeMillis();
-		log.info("Menu Itme initial: " + (afterTime - beforeTime) + "ms");
-
-		beforeTime = System.currentTimeMillis();
-		customerRepository.saveAll(initCustomer());
-		afterTime = System.currentTimeMillis();
-		log.info("Customer initial: " + (afterTime - beforeTime) + "ms");
-		
-		beforeTime = System.currentTimeMillis();
-		initOrder().forEach(orderService::saveOrder);
-		afterTime = System.currentTimeMillis();
-		log.info("Order initial: " + (afterTime - beforeTime) + "ms");
+		if (menuItemRepository.count() <= 0) {
+			long beforeTime = System.currentTimeMillis();
+			menuItemRepository.saveAll(initMenuItem());
+			long afterTime = System.currentTimeMillis();
+			log.info("Menu Itme initial: " + (afterTime - beforeTime) + "ms");
+	
+			beforeTime = System.currentTimeMillis();
+			customerRepository.saveAll(initCustomer());
+			afterTime = System.currentTimeMillis();
+			log.info("Customer initial: " + (afterTime - beforeTime) + "ms");
+			
+			beforeTime = System.currentTimeMillis();
+			initOrder().parallelStream().forEach(orderService::saveOrder);
+			afterTime = System.currentTimeMillis();
+			log.info("Order initial: " + (afterTime - beforeTime) + "ms");
+		}
 
 	}
 
@@ -68,7 +69,7 @@ public class DataInitializer implements CommandLineRunner {
 		for (int i = 0; i < 10; i++) {
 
 			orderDate = orderDate.plusDays(1);
-			int randomOderCount = random.nextInt(50) + 1;
+			int randomOderCount = random.nextInt(100) + 1;
 
 			for (int j = 0; j < randomOderCount; j++) {
 				int orderLineCounr = random.nextInt(10) + 1;
@@ -86,15 +87,7 @@ public class DataInitializer implements CommandLineRunner {
 						orderDate));
 			}
 		}
-
-		// Generate a random number between 1 and 10 (inclusive)
-		long customerId = random.nextLong(1, 10);
-		long qty = random.nextLong(1, 10);
-		List<OrderLine> orderLines = new ArrayList<>();
-		orderLines.add(new OrderLine(new MenuItem(menuItemId, null, null, null, null), null, BigDecimal.valueOf(qty),
-				null, null));
-		orders.add(
-				new Order(new Customer(customerId, null, null, null, null, null), orderLines, null, null, orderDate));
+		
 		return orders;
 	}
 
