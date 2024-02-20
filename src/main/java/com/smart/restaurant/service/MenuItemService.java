@@ -1,4 +1,5 @@
 package com.smart.restaurant.service;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.smart.restaurant.model.MenuItem;
@@ -23,15 +24,15 @@ public class MenuItemService {
         return menuItemRepository.findAll();
     }
 
-    public Optional<MenuItem> getMenuItemById(Long id) {
+    public Optional<MenuItem> getMenuItemById(@NonNull Long id) {
         return menuItemRepository.findById(id);
     }
 
-    public MenuItem saveMenuItem(MenuItem menuItem) {
+    public MenuItem saveMenuItem(@NonNull MenuItem menuItem) {
         return menuItemRepository.save(menuItem);
     }
 
-    public void deleteMenuItem(Long id) {
+    public void deleteMenuItem(@NonNull Long id) {
         menuItemRepository.deleteById(id);
     }
 }

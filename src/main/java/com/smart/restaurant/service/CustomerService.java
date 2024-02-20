@@ -1,4 +1,5 @@
 package com.smart.restaurant.service;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.smart.restaurant.model.Customer;
@@ -21,15 +22,15 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer getCustomerById(Long id) {
+    public Customer getCustomerById(@NonNull Long id) {
         return customerRepository.findById(id).orElse(null);
     }
 
-    public Customer createCustomer(Customer customer) {
+    public Customer createCustomer(@NonNull Customer customer) {
         return customerRepository.save(customer);
     }
 
-    public void deleteCustomer(Long id) {
+    public void deleteCustomer(@NonNull Long id) {
         customerRepository.deleteById(id);
     }
 }

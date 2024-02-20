@@ -1,5 +1,6 @@
 package com.smart.restaurant.service;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.smart.restaurant.model.Order;
@@ -44,7 +45,7 @@ public class OrderService {
         return orderRepository.findMaxSaleDayInRange(startDate, endDate);
     }
 
-    public Optional<Order> getOrderById(Long id) {
+    public Optional<Order> getOrderById(@NonNull Long id) {
         return orderRepository.findById(id);
     }
 
@@ -65,7 +66,7 @@ public class OrderService {
         return order2;
     }
 
-    public void deleteOrder(Long id) {
+    public void deleteOrder(@NonNull Long id) {
         orderRepository.deleteById(id);
     }
 }
